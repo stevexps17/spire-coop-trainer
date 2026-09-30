@@ -95,5 +95,14 @@
   "k093": "Pilih hanya dirimu untuk menghapus kartu.",
   "k094": "Kartu dihapus.",
   "k095": "Penghapusan dibatalkan.",
-  "k096": "Penghapusan gagal. Periksa dek sebelum mencoba lagi."
+  "k096": "Penghapusan gagal. Periksa dek sebelum mencoba lagi.",
+  "k097": "Bantuan pertempuran",
+  "k098": "Energi otomatis (Uji coba)",
+  "k099": "Perlindungan nyawa (Uji coba)",
+  "k100": "Aktifkan untuk pilihan",
+  "k101": "Nonaktifkan untuk pilihan",
+  "k102": "Nonaktifkan semua",
+  "k103": "Energi di bawah 3 diisi ke 10 (memengaruhi kartu X). Perlindungan memberi Buffer, bukan keabadian mutlak. Menonaktifkan menghentikan pengisian; efek yang ada tetap.",
+  "k104": "Energi: {0}\nPerlindungan: {1}",
+  "k105": "Bantuan berhenti karena kesalahan atau batas waktu. Periksa hasil. Dinonaktifkan hingga run baru."
 }

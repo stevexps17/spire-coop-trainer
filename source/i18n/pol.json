@@ -95,5 +95,14 @@
   "k093": "Aby usunąć kartę, wybierz tylko siebie.",
   "k094": "Karta usunięta.",
   "k095": "Usuwanie anulowane.",
-  "k096": "Usuwanie nie powiodło się. Sprawdź talię przed ponowną próbą."
+  "k096": "Usuwanie nie powiodło się. Sprawdź talię przed ponowną próbą.",
+  "k097": "Pomoc w walce",
+  "k098": "Automatyczna energia (Test)",
+  "k099": "Ochrona życia (Test)",
+  "k100": "Włącz dla wybranych",
+  "k101": "Wyłącz dla wybranych",
+  "k102": "Wyłącz wszystko",
+  "k103": "Poniżej 3 energii: uzupełnij do 10 (wpływa na karty X). Ochrona daje Buffer, nie pełną nieśmiertelność. Wyłączenie zatrzymuje uzupełnianie; obecne efekty pozostają.",
+  "k104": "Energia: {0}\nOchrona: {1}",
+  "k105": "Pomoc zatrzymana po błędzie lub przekroczeniu czasu. Sprawdź wyniki. Wyłączona do nowej rozgrywki."
 }

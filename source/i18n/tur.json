@@ -95,5 +95,14 @@
   "k093": "Kart silmek için yalnızca kendini seç.",
   "k094": "Kart silindi.",
   "k095": "Silme iptal edildi.",
-  "k096": "Silme başarısız. Tekrar denemeden önce desteni kontrol et."
+  "k096": "Silme başarısız. Tekrar denemeden önce desteni kontrol et.",
+  "k097": "Savaş yardımları",
+  "k098": "Otomatik enerji (Test)",
+  "k099": "Can koruması (Test)",
+  "k100": "Seçilenler için aç",
+  "k101": "Seçilenler için kapat",
+  "k102": "Tümünü kapat",
+  "k103": "Enerji 3 altındaysa 10’a doldurur (X kartlarını etkiler). Koruma Buffer verir; mutlak ölümsüzlük değildir. Kapatmak takviyeyi durdurur; mevcut etkiler kalır.",
+  "k104": "Enerji: {0}\nKoruma: {1}",
+  "k105": "Hata veya zaman aşımı nedeniyle durdu. Sonuçları kontrol et. Yeni koşuya kadar devre dışı."
 }

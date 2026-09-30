@@ -95,5 +95,14 @@
   "k093": "Select only yourself to remove a card.",
   "k094": "Card removed.",
   "k095": "Removal canceled.",
-  "k096": "Removal failed. Check your deck before trying again."
+  "k096": "Removal failed. Check your deck before trying again.",
+  "k097": "Combat assists",
+  "k098": "Auto energy (Test)",
+  "k099": "Life protection (Test)",
+  "k100": "Enable for selected",
+  "k101": "Disable for selected",
+  "k102": "Disable all",
+  "k103": "Energy below 3: refill to 10 (affects X-cost cards). Protection adds Buffer; not absolute invincibility. Disabling stops refills; existing energy and Buffer remain.",
+  "k104": "Energy: {0}\nProtection: {1}",
+  "k105": "Assist stopped after an error or timeout. Check results. Disabled until a new run."
 }

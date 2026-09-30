@@ -95,5 +95,14 @@
   "k093": "Seleziona solo il tuo personaggio per rimuovere una carta.",
   "k094": "Carta rimossa.",
   "k095": "Rimozione annullata.",
-  "k096": "Rimozione fallita. Controlla il mazzo prima di riprovare."
+  "k096": "Rimozione fallita. Controlla il mazzo prima di riprovare.",
+  "k097": "Aiuti in combattimento",
+  "k098": "Energia automatica (Test)",
+  "k099": "Protezione vitale (Test)",
+  "k100": "Attiva per selezionati",
+  "k101": "Disattiva per selezionati",
+  "k102": "Disattiva tutto",
+  "k103": "Sotto 3 energia: ricarica a 10 (influenza le carte X). La protezione aggiunge Buffer, non immortalità assoluta. Disattivare ferma le ricariche; gli effetti esistenti restano.",
+  "k104": "Energia: {0}\nProtezione: {1}",
+  "k105": "Aiuto fermato per errore o timeout. Controlla i risultati. Disattivato fino alla prossima partita."
 }

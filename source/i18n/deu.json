@@ -95,5 +95,14 @@
   "k093": "Wähle zum Entfernen nur dich selbst aus.",
   "k094": "Karte entfernt.",
   "k095": "Entfernen abgebrochen.",
-  "k096": "Entfernen fehlgeschlagen. Prüfe zuerst dein Deck."
+  "k096": "Entfernen fehlgeschlagen. Prüfe zuerst dein Deck.",
+  "k097": "Kampfhilfen",
+  "k098": "Auto-Energie (Test)",
+  "k099": "Lebensschutz (Test)",
+  "k100": "Für Auswahl aktivieren",
+  "k101": "Für Auswahl deaktivieren",
+  "k102": "Alles deaktivieren",
+  "k103": "Unter 3 Energie: auf 10 auffüllen (betrifft X-Karten). Schutz gewährt Puffer, keine absolute Unsterblichkeit. Ausschalten stoppt Nachfüllen; Energie und Puffer bleiben.",
+  "k104": "Energie: {0}\nSchutz: {1}",
+  "k105": "Hilfe nach Fehler oder Zeitüberschreitung gestoppt. Ergebnis prüfen. Bis zum nächsten Run deaktiviert."
 }

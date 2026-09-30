@@ -95,5 +95,14 @@
   "k093": "Sélectionnez uniquement votre personnage pour retirer une carte.",
   "k094": "Carte retirée.",
   "k095": "Retrait annulé.",
-  "k096": "Échec du retrait. Vérifiez votre deck avant de réessayer."
+  "k096": "Échec du retrait. Vérifiez votre deck avant de réessayer.",
+  "k097": "Aides au combat",
+  "k098": "Énergie auto (Test)",
+  "k099": "Protection vitale (Test)",
+  "k100": "Activer pour la sélection",
+  "k101": "Désactiver pour la sélection",
+  "k102": "Tout désactiver",
+  "k103": "Sous 3 énergies : recharge à 10 (affecte les cartes X). Protection par Buffer, sans immortalité absolue. Désactiver arrête les recharges ; les effets acquis restent.",
+  "k104": "Énergie : {0}\nProtection : {1}",
+  "k105": "Aide arrêtée après une erreur ou un délai dépassé. Vérifiez les résultats. Désactivée jusqu’à la prochaine partie."
 }

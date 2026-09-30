@@ -41,7 +41,7 @@ public static partial class Entry {
             try { Attach(((SceneTree)Engine.GetMainLoop()).Root); }
             catch(Exception e) { GD.PrintErr("[HostGold] Attach failed: "+e); }
         }).CallDeferred();
-        GD.Print("[HostGold 0.6.0] Loaded; draggable coin UI; exact assembly match="+compatible);
+        GD.Print("[HostGold 0.7.0] Loaded; draggable coin UI; exact assembly match="+compatible);
     }
     public static void Attach(Node __instance) {
         if(timer!=null && GodotObject.IsInstanceValid(timer))return;
@@ -71,7 +71,7 @@ public static partial class Entry {
         var title=new Label {Text=L("k021"),MouseFilter=Control.MouseFilterEnum.Stop,MouseDefaultCursorShape=Control.CursorShape.Move,AutowrapMode=TextServer.AutowrapMode.WordSmart};
         windowTitle=title;title.AddThemeFontSizeOverride("font_size",28);title.AddThemeColorOverride("font_color",new Color("ecd29a"));
         title.GuiInput+=e=>BeginDrag(e,panel);shell.AddChild(title);
-        var subtitle=new Label {Text="HOST TOOLS v0.6.1",TooltipText=L("k022")};MutedLabel(subtitle);shell.AddChild(subtitle);
+        var subtitle=new Label {Text="HOST TOOLS v0.7.0",TooltipText=L("k022")};MutedLabel(subtitle);shell.AddChild(subtitle);
         shell.AddChild(new HSeparator());
         contentScroll=new ScrollContainer {CustomMinimumSize=new Vector2(0,320),HorizontalScrollMode=ScrollContainer.ScrollMode.Disabled};shell.AddChild(contentScroll);
         var box=new VBoxContainer {SizeFlagsHorizontal=Control.SizeFlags.ExpandFill};box.AddThemeConstantOverride("separation",14);contentScroll.AddChild(box);
@@ -82,7 +82,7 @@ public static partial class Entry {
         goldPage.AddChild(new Label {Text=L("k025")});
         amount=new SpinBox {MinValue=1,MaxValue=999999,Step=1,Value=10,UpdateOnTextChanged=true};goldPage.AddChild(amount);
         addButton=new Button {ThemeTypeVariation="HostPrimary",Text=L("k026")}; addButton.Pressed+=()=>{_ = AddGold();};goldPage.AddChild(addButton);
-        BuildBrowser(tabs,true);BuildBrowser(tabs,false);BuildSettings(tabs);
+        BuildBrowser(tabs,true);BuildBrowser(tabs,false);BuildCombatAssist(tabs);BuildSettings(tabs);
         tabs.TabChanged+=_=>RefreshBrowsers();
         resultLabel=new Label {Text="",AutowrapMode=TextServer.AutowrapMode.WordSmart,CustomMinimumSize=new Vector2(400,48)};MutedLabel(resultLabel);shell.AddChild(new HSeparator());shell.AddChild(resultLabel);
         var close=new Button {Text=L("k028")};close.Pressed+=()=>{capturing=false;panel.Hide();};shell.AddChild(close);
@@ -152,6 +152,7 @@ public static partial class Entry {
             UpdateResize();
             FitArtLayout();
             RefreshTargets();
+            TickCombatAssist();
             UpdateDrag();
             goldIcon.Position=KeepOnScreen(goldIcon,goldIcon.Position);
             if(panel.Visible)panel.Position=KeepOnScreen(panel,panel.Position);
@@ -184,4 +185,5 @@ public static partial class Entry {
         finally{busy=false;last=DateTime.UtcNow;}
     }
 }
+
 

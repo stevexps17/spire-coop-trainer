@@ -12,12 +12,14 @@ $args+=Join-Path $PSScriptRoot 'Localization.cs'
 $args+=Join-Path $PSScriptRoot 'Targets.cs'
 $args+=Join-Path $PSScriptRoot 'Art.cs'
 $args+=Join-Path $PSScriptRoot 'Resize.cs'
+$args+=Join-Path $PSScriptRoot 'CombatAssist.cs'
 $args+=Get-ChildItem (Join-Path $PSScriptRoot "i18n") -Filter "*.json" | ForEach-Object { "-resource:"+$_.FullName+",HostGold.i18n."+$_.Name }
 $sdkLine = & dotnet --list-sdks | Select-Object -Last 1
 if (!$sdkLine -or $sdkLine -notmatch '^([^ ]+) \[(.+)\]$') { throw 'Install a .NET SDK first.' }
 $compiler = Join-Path (Join-Path $Matches[2] $Matches[1]) 'Roslyn/bincore/csc.dll'
 & dotnet $compiler @args
 if($LASTEXITCODE -ne 0){throw 'Compilation failed'}
+
 
 
 

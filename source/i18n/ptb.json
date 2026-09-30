@@ -95,5 +95,14 @@
   "k093": "Selecione apenas seu personagem para remover uma carta.",
   "k094": "Carta removida.",
   "k095": "Remoção cancelada.",
-  "k096": "Falha na remoção. Confira seu baralho antes de tentar novamente."
+  "k096": "Falha na remoção. Confira seu baralho antes de tentar novamente.",
+  "k097": "Auxílios de combate",
+  "k098": "Energia automática (Teste)",
+  "k099": "Proteção vital (Teste)",
+  "k100": "Ativar para selecionados",
+  "k101": "Desativar para selecionados",
+  "k102": "Desativar tudo",
+  "k103": "Abaixo de 3 de energia: recarrega até 10 (afeta cartas X). A proteção adiciona Buffer, sem imortalidade absoluta. Desativar interrompe recargas; os efeitos existentes permanecem.",
+  "k104": "Energia: {0}\nProteção: {1}",
+  "k105": "Auxílio interrompido por erro ou tempo esgotado. Confira os resultados. Desativado até a próxima partida."
 }
