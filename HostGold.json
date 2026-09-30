@@ -1,0 +1,11 @@
+{
+  "id": "HostGold",
+  "name": "房主工具 Host Tools",
+  "author": "Local",
+  "description": "联机房主工具：选择玩家发放金币、原版卡牌与遗物，职业筛选，可调窗口。支持当前 beta 游戏内全部 16 种语言及 Config 设置。其他玩家发放仍为实验功能。 Host tools with 16-language UI; experimental remote rewards; public-beta 0.111.0.",
+  "version": "0.6.1",
+  "has_pck": false,
+  "has_dll": true,
+  "affects_gameplay": false,
+  "min_game_version": "0.111.0"
+}

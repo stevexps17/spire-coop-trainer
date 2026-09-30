@@ -1,0 +1,8 @@
+*.dll
+*.pdb
+*.zip
+bin/
+obj/
+.vs/
+settings.json
+.sts2-workshop-uploader*
