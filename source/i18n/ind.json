@@ -102,7 +102,7 @@
   "k100": "Aktifkan untuk pilihan",
   "k101": "Nonaktifkan untuk pilihan",
   "k102": "Nonaktifkan semua",
-  "k103": "Energi di bawah 3 diisi ke 10 (memengaruhi kartu X). Perlindungan memberi Buffer, bukan keabadian mutlak. Menonaktifkan menghentikan pengisian; efek yang ada tetap.",
+  "k103": "Energi di bawah 100 diisi ke 100 (memengaruhi kartu X). Perlindungan memberi Buffer, bukan keabadian mutlak. Menonaktifkan menghentikan pengisian; efek yang ada tetap.",
   "k104": "Energi: {0}\nPerlindungan: {1}",
-  "k105": "Bantuan berhenti karena kesalahan atau batas waktu. Periksa hasil. Dinonaktifkan hingga run baru."
+  "k105": "Bantuan berhenti karena kesalahan atau batas waktu. Periksa hasil."
 }

@@ -102,7 +102,7 @@
   "k100": "Włącz dla wybranych",
   "k101": "Wyłącz dla wybranych",
   "k102": "Wyłącz wszystko",
-  "k103": "Poniżej 3 energii: uzupełnij do 10 (wpływa na karty X). Ochrona daje Buffer, nie pełną nieśmiertelność. Wyłączenie zatrzymuje uzupełnianie; obecne efekty pozostają.",
+  "k103": "Poniżej 100 energii: uzupełnij do 100 (wpływa na karty X). Ochrona daje Buffer, nie pełną nieśmiertelność. Wyłączenie zatrzymuje uzupełnianie; obecne efekty pozostają.",
   "k104": "Energia: {0}\nOchrona: {1}",
-  "k105": "Pomoc zatrzymana po błędzie lub przekroczeniu czasu. Sprawdź wyniki. Wyłączona do nowej rozgrywki."
+  "k105": "Pomoc zatrzymana po błędzie lub przekroczeniu czasu. Sprawdź wyniki."
 }

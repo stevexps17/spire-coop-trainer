@@ -41,7 +41,7 @@ public static partial class Entry {
             try { Attach(((SceneTree)Engine.GetMainLoop()).Root); }
             catch(Exception e) { GD.PrintErr("[HostGold] Attach failed: "+e); }
         }).CallDeferred();
-        GD.Print("[HostGold 0.7.0] Loaded; draggable coin UI; exact assembly match="+compatible);
+        GD.Print("[HostGold 0.7.3] Loaded; draggable coin UI; exact assembly match="+compatible);
     }
     public static void Attach(Node __instance) {
         if(timer!=null && GodotObject.IsInstanceValid(timer))return;
@@ -71,7 +71,7 @@ public static partial class Entry {
         var title=new Label {Text=L("k021"),MouseFilter=Control.MouseFilterEnum.Stop,MouseDefaultCursorShape=Control.CursorShape.Move,AutowrapMode=TextServer.AutowrapMode.WordSmart};
         windowTitle=title;title.AddThemeFontSizeOverride("font_size",28);title.AddThemeColorOverride("font_color",new Color("ecd29a"));
         title.GuiInput+=e=>BeginDrag(e,panel);shell.AddChild(title);
-        var subtitle=new Label {Text="HOST TOOLS v0.7.0",TooltipText=L("k022")};MutedLabel(subtitle);shell.AddChild(subtitle);
+        var subtitle=new Label {Text="HOST TOOLS v0.7.3",TooltipText=L("k022")};MutedLabel(subtitle);shell.AddChild(subtitle);
         shell.AddChild(new HSeparator());
         contentScroll=new ScrollContainer {CustomMinimumSize=new Vector2(0,320),HorizontalScrollMode=ScrollContainer.ScrollMode.Disabled};shell.AddChild(contentScroll);
         var box=new VBoxContainer {SizeFlagsHorizontal=Control.SizeFlags.ExpandFill};box.AddThemeConstantOverride("separation",14);contentScroll.AddChild(box);
@@ -161,7 +161,7 @@ public static partial class Entry {
             keyDown=pressed;
             if(!panel.Visible)return;
             var me=Check(out string reason);
-            stateLabel.Text=me==null?reason:L("k037")+me.Gold;
+            stateLabel.Text=me==null?(compatible&&CombatManager.Instance.IsInProgress?L("k097"):reason):L("k037")+me.Gold;
             addButton.Disabled=busy || me==null || Targets().Count==0 || (DateTime.UtcNow-last).TotalSeconds<2;
             UpdateBrowserButtons(addButton.Disabled);
         }catch(Exception e){GD.PrintErr("[HostGold] UI: "+e.Message);}

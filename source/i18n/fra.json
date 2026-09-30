@@ -102,7 +102,7 @@
   "k100": "Activer pour la sélection",
   "k101": "Désactiver pour la sélection",
   "k102": "Tout désactiver",
-  "k103": "Sous 3 énergies : recharge à 10 (affecte les cartes X). Protection par Buffer, sans immortalité absolue. Désactiver arrête les recharges ; les effets acquis restent.",
+  "k103": "Sous 100 énergies : recharge à 100 (affecte les cartes X). Protection par Buffer, sans immortalité absolue. Désactiver arrête les recharges ; les effets acquis restent.",
   "k104": "Énergie : {0}\nProtection : {1}",
-  "k105": "Aide arrêtée après une erreur ou un délai dépassé. Vérifiez les résultats. Désactivée jusqu’à la prochaine partie."
+  "k105": "Aide arrêtée après une erreur ou un délai dépassé. Vérifiez les résultats."
 }

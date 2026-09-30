@@ -14,7 +14,7 @@ A host-side Slay the Spire 2 mod for granting gold, cards and relics outside com
 English · 简体中文 · 繁體中文 · Deutsch · Español (Latinoamérica) · Français · Bahasa Indonesia · Italiano · 日本語 · 한국어 · Polski · Português (Brasil) · Русский · Español (España) · ไทย · Türkçe
 
 ## Compatibility / 兼容性
-Version 0.7.0 targets Steam public-beta v0.111.0 and checks the exact game assembly hash. Other builds may be disabled. Multiplayer grants and card removal are experimental; live multiplayer verification is incomplete.
+Version 0.7.3 targets Steam public-beta v0.111.0 and checks the exact game assembly hash. Other builds may be disabled. Multiplayer grants and card removal are experimental; live multiplayer verification is incomplete.
 当前版本针对 Steam public-beta v0.111.0，校验游戏文件版本。其他版本可能禁用功能。联机发放及删牌仍处于测试阶段，尚未完成充分的实机联机验证。
 
 ## Build / 构建
@@ -31,5 +31,6 @@ The script produces `HostGold.dll` beside `HostGold.json`. Copy these two files 
 See [使用说明](使用说明.md) and [支持语言](支持语言.md) for details.
 
 ## Experimental combat assists / 战斗辅助（测试）
-Select recipients, then enable Auto Energy or Life Protection independently. Energy below 3 is replenished to 10 during idle player-action phases (affects X-cost cards). Life Protection replenishes native Buffer, not absolute invincibility or healing. Disable stops replenishment; already granted effects remain. New runs clear selections. Errors/timeouts disable assists for the rest of the run. Live multiplayer execution is not yet verified.
-选择玩家后分别启用自动补能或生命保护。低于3能量时在玩家操作阶段空闲时补到10（影响X费牌）；保护补充原版缓冲，不保证绝对不死，也不回血。关闭只停止补充，已有效果保留；新对局清空开关。错误或超时后本局停用。尚未实机联机验证。
+Select recipients, then enable Auto Energy or Life Protection independently. Energy below 100 is replenished to 100 during idle player-action phases (affects X-cost cards). Life Protection replenishes native Buffer, not absolute invincibility or healing. Disable stops replenishment; already granted effects remain. New runs clear selections. Errors/timeouts stop automatic execution; switches remain available, and manual re-enabling can resume after any pending action completes. Live multiplayer execution is not yet verified.
+选择玩家后分别启用自动补能或生命保护。低于100能量时在玩家操作阶段空闲时补到100（影响X费牌）；保护补充原版缓冲，不保证绝对不死，也不回血。关闭只停止补充，已有效果保留；新对局清空开关。错误或超时停止自动执行；开关仍可操作，等待中的动作结束后可手动重新启用。尚未实机联机验证。
+

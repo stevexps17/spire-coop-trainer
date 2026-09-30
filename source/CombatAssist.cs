@@ -11,35 +11,34 @@ using MegaCrit.Sts2.Core.Multiplayer;
 using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models;
 namespace HostGold;
 public static partial class Entry {
     static readonly HashSet<ulong> energyPlayers=new(), protectionPlayers=new();
     static object assistRun;
     static ConsoleCmdGameAction assistPending;
-    static DateTime assistSent, assistNext;
+    static DateTime assistSent, assistNext, assistTraceNext;
     static Player assistPlayer;
     static object assistCombat;
     static bool assistWasEnergy;
     static int assistBefore;
-    static int EnergyRefill(int current)=>current<3?(int)Math.Min(1000L,10L-current):0;
+    static int EnergyRefill(int current)=>current<100?(int)Math.Min(1000L,100L-current):0;
+    static string ProtectionCommand(int index)=>"power "+ModelDb.Power<BufferPower>().Id.Entry+" 100 "+index;
     static int BufferAmount(Player player)=>player.Creature.Powers.OfType<BufferPower>().FirstOrDefault()?.Amount??0;
-    static bool assistStopped;
+    static bool assistStopped, assistTimedOut;
     static Label assistStatus;
-    static readonly List<Button> assistEnableButtons=new();
+    static readonly List<(CheckButton Button,bool Energy)> assistToggles=new();
     static readonly MethodInfo enqueueAssist=typeof(ActionQueueSynchronizer).GetMethod("EnqueueAction",BindingFlags.Instance|BindingFlags.NonPublic|BindingFlags.Public);
     static readonly FieldInfo assistQueues=typeof(ActionQueueSynchronizer).GetField("_actionQueueSet",BindingFlags.Instance|BindingFlags.NonPublic);
     static void BuildCombatAssist(TabContainer tabs) {
         var page=new VBoxContainer {Name=L("k097")};page.AddThemeConstantOverride("separation",8);tabs.AddChild(page);
         foreach(bool energy in new[]{true,false}) {
             page.AddChild(new Label {Text=L(energy?"k098":"k099")});
-            var row=new HBoxContainer();page.AddChild(row);
-            foreach(bool enable in new[]{true,false}) {
-                var button=new Button {Text=L(enable?"k100":"k101"),TooltipText=L(enable?"k100":"k101"),ClipText=true,SizeFlagsHorizontal=Control.SizeFlags.ExpandFill};row.AddChild(button);
-                if(enable)assistEnableButtons.Add(button);
-                button.Pressed+=()=>SetAssist(energy,enable);
-            }
+            var toggle=new CheckButton {Text=L("k100"),TooltipText=L(energy?"k098":"k099"),ClipText=true};
+            toggle.Toggled+=enabled=>SetAssist(energy,enabled);page.AddChild(toggle);
+            assistToggles.Add((toggle,energy));
         }
-        var stop=new Button {Text=L("k102")};stop.Pressed+=()=>{energyPlayers.Clear();protectionPlayers.Clear();};page.AddChild(stop);
+        var stop=new Button {Text=L("k102")};stop.Pressed+=()=>{energyPlayers.Clear();protectionPlayers.Clear();assistStopped=false;resultLabel.Text="";RefreshAssistSwitches();};page.AddChild(stop);
         page.AddChild(new Label {Text=L("k103"),AutowrapMode=TextServer.AutowrapMode.WordSmart});
         assistStatus=new Label {AutowrapMode=TextServer.AutowrapMode.WordSmart};page.AddChild(assistStatus);
     }
@@ -50,8 +49,21 @@ public static partial class Entry {
     }
     static void SetAssist(bool energy,bool enable) {
         var ids=energy?energyPlayers:protectionPlayers;
-        if(enable&&(!AssistAllowed()||assistStopped||assistPending!=null))return;
-        foreach(var p in Targets()) {if(enable)ids.Add(p.NetId);else ids.Remove(p.NetId);}
+        UpdateAssistSelection(ids,selectedPlayers,enable);
+        if(assistPending==null){assistStopped=false;resultLabel.Text="";}
+        GD.Print("[HostGold] Assist preference: energy="+energy+" enabled="+enable+" targets="+string.Join(",",selectedPlayers));
+        RefreshAssistSwitches();
+    }
+    static void UpdateAssistSelection(HashSet<ulong> ids, IEnumerable<ulong> selected, bool enable) {
+        foreach(var id in selected){if(enable)ids.Add(id);else ids.Remove(id);}
+    }
+    static void RefreshAssistSwitches() {
+        foreach(var item in assistToggles){
+            var ids=item.Energy?energyPlayers:protectionPlayers;
+            // Any selected active recipient displays On; switching Off clears the whole selection.
+            item.Button.SetPressedNoSignal(selectedPlayers.Any(ids.Contains));
+            item.Button.Disabled=selectedPlayers.Count==0;
+        }
     }
     static void StopAssist(Exception error) {
         energyPlayers.Clear();protectionPlayers.Clear();assistStopped=true;
@@ -61,9 +73,16 @@ public static partial class Entry {
         try {
             var run=RunManager.Instance;var state=run?.DebugOnlyGetState();
             if(!ReferenceEquals(assistRun,state)) {assistRun=state;energyPlayers.Clear();protectionPlayers.Clear();assistPending=null;assistStopped=false;}
-            string Names(HashSet<ulong> ids)=>state==null?"—":string.Join(", ",state.Players.Where(p=>ids.Contains(p.NetId)).Select(PlayerName));
-            if(assistStatus!=null)assistStatus.Text=assistStopped?L("k105"):L("k104",Names(energyPlayers),Names(protectionPlayers));
-            foreach(var button in assistEnableButtons)button.Disabled=!AssistAllowed()||assistStopped||assistPending!=null||Targets().Count==0;
+            string Names(HashSet<ulong> ids)=>state==null?"—":(ids.Count==0?"—":string.Join(", ",state.Players.Where(p=>ids.Contains(p.NetId)).Select(PlayerName)));
+            if(assistStatus!=null){
+                assistStatus.Text=assistStopped?L("k105"):L("k104",Names(energyPlayers),Names(protectionPlayers));
+                if(!assistStopped&&(energyPlayers.Count>0||protectionPlayers.Count>0)) {
+                    if(assistPending!=null)assistStatus.Text+="\n"+L("k034");
+                    else if(!AssistAllowed())assistStatus.Text+="\n"+L("k032");
+                    else if(!CombatManager.Instance.IsInProgress)assistStatus.Text+="\n"+L("k097")+": —";
+                }
+            }
+            RefreshAssistSwitches();
             if(assistPending!=null) {
                 if(assistPending.CompletionTask.IsCompleted) {
                     var failed=assistPending.Exception;assistPending=null;assistNext=DateTime.UtcNow.AddMilliseconds(400);
@@ -71,13 +90,18 @@ public static partial class Entry {
                         (assistWasEnergy?assistPlayer.PlayerCombatState.Energy:BufferAmount(assistPlayer))<=assistBefore)
                         failed=new InvalidOperationException("Command completed without a confirmed increase; stopping instead of retrying.");
                     if(failed!=null)StopAssist(failed);
-                }else if(!assistStopped&&(DateTime.UtcNow-assistSent).TotalSeconds>15)StopAssist(new TimeoutException("Action pending; no retries until a new run."));
+                }else if(!assistTimedOut&&(DateTime.UtcNow-assistSent).TotalSeconds>15){assistTimedOut=true;StopAssist(new TimeoutException("Action pending; wait for completion before manually enabling again."));}
                 return;
             }
             if(assistStopped||!AssistAllowed()||busy||DateTime.UtcNow<assistNext)return;
             var combat=CombatManager.Instance;
-            if(!combat.IsInProgress||combat.IsStarting||combat.IsEnding||combat.PlayerActionsDisabled||combat.IsEnemyTurnStarted||combat.EndingPlayerTurnPhaseOne||combat.EndingPlayerTurnPhaseTwo||run.ActionExecutor.IsRunning)return;
-            if(assistQueues?.GetValue(run.ActionQueueSynchronizer) is not ActionQueueSet queues||!queues.IsEmpty)return;
+            if((energyPlayers.Count>0||protectionPlayers.Count>0)&&DateTime.UtcNow>=assistTraceNext){
+                assistTraceNext=DateTime.UtcNow.AddSeconds(10);
+                GD.Print("[HostGold] Assist runtime: combat="+combat.IsInProgress+" paused="+run.ActionExecutor.IsPaused+" action="+run.ActionExecutor.CurrentlyRunningAction+" phase="+string.Join(",",state.Players.Select(p=>p.NetId+":"+p.PlayerCombatState?.Phase)));
+            }
+            if(!combat.IsInProgress||combat.IsStarting||combat.IsEnding||combat.EndingPlayerTurnPhaseOne||combat.EndingPlayerTurnPhaseTwo||run.ActionExecutor.IsPaused||run.ActionExecutor.CurrentlyRunningAction!=null)return;
+            if(assistQueues?.GetValue(run.ActionQueueSynchronizer) is not ActionQueueSet queues)throw new InvalidOperationException("Missing action queue");
+            if(!queues.IsEmpty)return;
             var cs=combat.DebugOnlyGetState();if(cs==null)return;
             foreach(var p in state.Players) {
                 if(p.Creature.IsDead||p.PlayerCombatState==null||p.PlayerCombatState.Phase!=PlayerTurnPhase.Play)continue;
@@ -85,9 +109,9 @@ public static partial class Entry {
                 // Native Buffer only prevents losses using the game's normal HP-loss hooks.
                 if(protectionPlayers.Contains(p.NetId)&&BufferAmount(p)<10) {
                     int index=cs.Creatures.ToList().IndexOf(p.Creature);
-                    if(index>=0){SendAssist(p,"power BUFFER 100 "+index);return;}
+                    if(index>=0){SendAssist(p,ProtectionCommand(index));return;}
                 }
-                if(energyPlayers.Contains(p.NetId)&&p.PlayerCombatState.Energy<3) {SendAssist(p,"energy "+EnergyRefill(p.PlayerCombatState.Energy));return;}
+                if(energyPlayers.Contains(p.NetId)&&p.PlayerCombatState.Energy<100) {SendAssist(p,"energy "+EnergyRefill(p.PlayerCombatState.Energy));return;}
             }
         }catch(Exception e){if(!assistStopped)StopAssist(e);}
     }
@@ -95,9 +119,11 @@ public static partial class Entry {
         // Owner and message playerId must agree for every peer to reconstruct the same action.
         assistPlayer=player;assistCombat=CombatManager.Instance.DebugOnlyGetState();assistWasEnergy=command.StartsWith("energy ",StringComparison.Ordinal);
         assistBefore=assistWasEnergy?player.PlayerCombatState.Energy:BufferAmount(player);
-        var action=new ConsoleCmdGameAction(player,command,true);assistPending=action;assistSent=DateTime.UtcNow;
+        GD.Print("[HostGold] Assist enqueue: target="+player.NetId+" command="+command);
+        var action=new ConsoleCmdGameAction(player,command,true);assistPending=action;assistTimedOut=false;assistSent=DateTime.UtcNow;
         enqueueAssist.Invoke(RunManager.Instance.ActionQueueSynchronizer,new object[]{action,player.NetId});
     }
 }
+
 
 

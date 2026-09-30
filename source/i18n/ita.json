@@ -102,7 +102,7 @@
   "k100": "Attiva per selezionati",
   "k101": "Disattiva per selezionati",
   "k102": "Disattiva tutto",
-  "k103": "Sotto 3 energia: ricarica a 10 (influenza le carte X). La protezione aggiunge Buffer, non immortalità assoluta. Disattivare ferma le ricariche; gli effetti esistenti restano.",
+  "k103": "Sotto 100 energia: ricarica a 100 (influenza le carte X). La protezione aggiunge Buffer, non immortalità assoluta. Disattivare ferma le ricariche; gli effetti esistenti restano.",
   "k104": "Energia: {0}\nProtezione: {1}",
-  "k105": "Aiuto fermato per errore o timeout. Controlla i risultati. Disattivato fino alla prossima partita."
+  "k105": "Aiuto fermato per errore o timeout. Controlla i risultati."
 }

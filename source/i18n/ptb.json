@@ -102,7 +102,7 @@
   "k100": "Ativar para selecionados",
   "k101": "Desativar para selecionados",
   "k102": "Desativar tudo",
-  "k103": "Abaixo de 3 de energia: recarrega até 10 (afeta cartas X). A proteção adiciona Buffer, sem imortalidade absoluta. Desativar interrompe recargas; os efeitos existentes permanecem.",
+  "k103": "Abaixo de 100 de energia: recarrega até 100 (afeta cartas X). A proteção adiciona Buffer, sem imortalidade absoluta. Desativar interrompe recargas; os efeitos existentes permanecem.",
   "k104": "Energia: {0}\nProteção: {1}",
-  "k105": "Auxílio interrompido por erro ou tempo esgotado. Confira os resultados. Desativado até a próxima partida."
+  "k105": "Auxílio interrompido por erro ou tempo esgotado. Confira os resultados."
 }

@@ -102,7 +102,7 @@
   "k100": "Activar para seleccionados",
   "k101": "Desactivar para seleccionados",
   "k102": "Desactivar todo",
-  "k103": "Con menos de 3 de energía, recarga a 10 (afecta cartas X). La protección añade Buffer; no garantiza inmortalidad. Desactivar detiene las recargas; lo recibido permanece.",
+  "k103": "Con menos de 100 de energía, recarga a 100 (afecta cartas X). La protección añade Buffer; no garantiza inmortalidad. Desactivar detiene las recargas; lo recibido permanece.",
   "k104": "Energía: {0}\nProtección: {1}",
-  "k105": "Ayuda detenida por error o espera excesiva. Revisa los resultados. Desactivada hasta la próxima partida."
+  "k105": "Ayuda detenida por error o espera excesiva. Revisa los resultados."
 }

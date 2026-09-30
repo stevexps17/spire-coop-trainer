@@ -102,7 +102,7 @@
   "k100": "Enable for selected",
   "k101": "Disable for selected",
   "k102": "Disable all",
-  "k103": "Energy below 3: refill to 10 (affects X-cost cards). Protection adds Buffer; not absolute invincibility. Disabling stops refills; existing energy and Buffer remain.",
+  "k103": "Energy below 100: refill to 100 (affects X-cost cards). Protection adds Buffer; not absolute invincibility. Disabling stops refills; existing energy and Buffer remain.",
   "k104": "Energy: {0}\nProtection: {1}",
-  "k105": "Assist stopped after an error or timeout. Check results. Disabled until a new run."
+  "k105": "Assist stopped after an error or timeout. Check results."
 }

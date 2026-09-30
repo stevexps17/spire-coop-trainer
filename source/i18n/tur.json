@@ -102,7 +102,7 @@
   "k100": "Seçilenler için aç",
   "k101": "Seçilenler için kapat",
   "k102": "Tümünü kapat",
-  "k103": "Enerji 3 altındaysa 10’a doldurur (X kartlarını etkiler). Koruma Buffer verir; mutlak ölümsüzlük değildir. Kapatmak takviyeyi durdurur; mevcut etkiler kalır.",
+  "k103": "Enerji 100 altındaysa 100’a doldurur (X kartlarını etkiler). Koruma Buffer verir; mutlak ölümsüzlük değildir. Kapatmak takviyeyi durdurur; mevcut etkiler kalır.",
   "k104": "Enerji: {0}\nKoruma: {1}",
-  "k105": "Hata veya zaman aşımı nedeniyle durdu. Sonuçları kontrol et. Yeni koşuya kadar devre dışı."
+  "k105": "Hata veya zaman aşımı nedeniyle durdu. Sonuçları kontrol et."
 }
